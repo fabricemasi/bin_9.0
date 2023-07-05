@@ -1,0 +1,289 @@
+#!/usr/bin/env bash
+#!/bin/bash
+
+
+export EDITOR='gedit'
+
+
+
+alias i="init"
+alias i0="init 0"
+alias i1="init 1"
+alias i2="init 2"
+alias i3="init 3"
+
+
+# ----------------------------------------------------------------------------------------------------------------------
+# ENVIRONNEMENT
+# ----------------------------------------------------------------------------------------------------------------------
+
+
+export WIN_ROOT="/mnt/c"
+export WIN_ROOT_FOR_WIN="\\\wsl$\Ubuntu"
+
+export WIN_HOME="$WIN_ROOT/Users/fabrice"
+export WIN_HOME_FOR_WIN="$WIN_ROOT_FOR_WIN/Users/fabrice"
+
+alias edit="$WIN_ROOT/'Program Files'/'Sublime Text 2'/sublime_text.exe"
+
+
+alias ~='cd ~'
+# alias @='cd $ROOT_C/Users/fabrice'
+# alias @@='cd $ROOT_C/Users/fabrice/fabrice'
+
+
+# DIVERS
+# LS_COLORS="di=34;1"     # :ln=36;1:ex=31;1:*~=31;1:*.html=31;1:*.shtml=37;1"
+# export LS_COLORS        # Couleur de fichiers dossiers dans le terminal
+
+
+# SCRIPTS
+
+# alias python="python3"
+alias py='python'
+
+alias tst="python $BIN/tools/presse_papier.py"
+alias msc="python3 /home/fabrice/bin/music/test2.py"
+
+
+# ----------------------------------------------------------------------------------------------------------------------
+# ALIASES
+# ----------------------------------------------------------------------------------------------------------------------
+
+
+# SYSTEME
+
+alias ed="$EDITOR '$BIN/ed/aliases'"
+alias ed2="$EDITOR '$BIN/ed/softs'"
+alias eds="source $BIN/ed/aliases;source $BIN/ed/softs"
+
+alias ls="ls --color=auto"
+
+alias l="ls -lAvh"
+alias ll="ls -lAvh"
+alias lll="ls -lAvh"
+alias cl="clear"
+alias cll="clear; l"
+#alias nn="open ."
+alias nn="explorer.exe ."
+alias brc="$EDITOR '\wsl.localhost\Ubuntu20.04LTS\home\fabrice\.bashrc'"
+
+
+
+alias bin="cd $BIN; clear; echo 'BIN :';echo '====='; ls -lah"
+
+alias smb="$EDITOR /etc/samba/smb.conf"
+alias fst="$EDITOR /etc/fstab"
+
+alias ram="free -h && sysctl vm.drop_caches=3 && free -h"
+alias rv="/mnt/c/'Program Files'/DJV2/bin/djv.com"
+#"C:\Program Files\DJV2\bin\djv.exe"
+
+alias shtd="$ROOT_C/WINDOWS/system32/shutdown.exe -s"
+alias s1='sudo shutdown -h +60'
+alias s2='sudo shutdown -h +120'
+alias s3='sudo shutdown -h +180'
+alias s4='sudo shutdown -h +240'
+
+
+
+alias s0="sudo shutdown -h +9000000;echo''; echo $'Redémarrage annulé';echo''"
+
+alias tuto="explorer.exe 'P:\ref\_TUTOS'"
+alias tuthou="explorer.exe 'P:\ref\_TUTOS\HOUDINI'"
+
+
+
+
+
+
+
+
+# VPN CINESITE
+
+
+
+alias cs1="/mnt/c/'Program Files'/Fortinet/FortiClient/'FortiClient VPN'/FortiClient.exe &"
+alias cs2="/mnt/c/'Program Files'/HP/'Remote Graphics Receiver'/rgreceiver.exe &"
+
+# SSH
+
+alias ser="sudo ssh fabrice@192.168.0.180"
+alias ttttt="sudo ssh fabrice@192.168.0.180 sudo su -S"
+
+# 
+
+export SERVER="192.168.0.180"
+
+
+
+# GIT
+
+alias gitp="git push -u origin master"
+
+
+
+
+
+
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ......="cd ../../../../.."
+alias .......="cd ../../../../../.."
+alias ........="cd ../../../../../../.."
+alias .........="cd ../../../../../../../.."
+alias ..........="cd ../../../../../../../../.."
+alias ...........="cd ../../../../../../../../../.."
+
+
+
+# ----------------------------------------------------------------------------------------------------------------------
+# PIPELINE
+# ----------------------------------------------------------------------------------------------------------------------
+
+alias jh="job -h"
+alias jhh="job -ha"
+alias s="setprojet"
+alias ss="settype"
+alias sss="setname"
+alias ssss="setdiscipline"
+
+
+
+#alias mnt="sudo mount -t drvfs //SERVER/PIPELINE /mnt/PIPELINE;
+#           sudo mount -t drvfs //SERVER/TEMP /mnt/TEMP"
+
+# NAVIGATION :
+
+alias gosoft="cd $ROOT_DISC; tre 1"
+alias godisc="godiscipline; tre 1"
+#alias goname="cd $ROOT_TYPE; tre 1"
+#alias gotype="cd $ROOT_PROJ; tre 1"
+alias goproj="cd $ROOT_PROJETS; tre 1"
+# ----------------------------------------------------------------------------------------------------------------------
+# A TESTER
+# ----------------------------------------------------------------------------------------------------------------------
+
+alias shut="sudo shutdown -h now"
+
+
+
+
+
+
+
+
+## BIN :
+#alias tr='source $BIN/prog/pipe-ui/data/transfert.sh'
+#
+#alias p3="python3.6"
+#alias ptest='cd ~/bin/prog/_training/Test/test_ui/; p3 executer.py &'
+#alias sa='cd ~/bin/prog/pipe-ui/; p3 exec.py; cd - &'
+#alias sat='cd ~/bin/prog/pipe-ui/; p3 test.py; cd - &'
+#
+#alias un='fmbrc'
+#
+#alias deux='fmrc'
+#
+
+#
+#
+#
+## MAIN :
+#
+#alias j='job'
+#
+#
+#
+
+#
+#alias rmm='rm -Rf'
+#alias ddu="du -h -d 1"
+#
+#alias nau="nn"
+#alias py="python"
+#
+
+#
+#
+#
+#
+#
+#
+#
+## PIPE
+#
+##alias run='job'
+#alias jh='job -h'
+#alias jha='job -ha' ###### ??
+#alias kp="killpipe"
+#alias jl="jll"
+#
+#alias s="setprojet"
+#alias sp="setprojet"
+#alias s1="setprojet"
+#
+#alias jj="setshot"
+#alias ss="setshot"
+#alias s2="setshot"
+#
+#alias jjj="setdiscipline"
+#alias sss="setdiscipline"
+#alias sd="setdiscipline"
+#alias s3="setdiscipline"
+#
+#
+#
+## SOFTS :
+#
+
+#alias ge='gedit'
+#alias gd='gedit'
+#
+#
+### SE DEPLACER :
+#
+#alias test="cd $BIN/prog/_training/Test/"
+#
+#
+##alias gocache="cd $CACHE"
+##alias gorender="cd $RENDER"
+#
+#alias goc='gocache'
+#alias gor='gorender'
+#alias goz='gozbrush'
+#
+#alias hip="gohip"
+#
+#alias cin="clear; cd /cygdrive/k; cll"
+#alias pipe="cd $PIPE_ROOT"
+#
+#
+#
+## PRATIQUE :
+#
+#alias shtd="$ROOTC/WINDOWS/system32/shutdown.exe -s"
+#
+#alias brc="$EDITOR /home/$USER/.bashrc"
+#alias brcs="source /home/$USER/.bashrc"
+#alias sv="$EDITOR '$BIN/backup/savedFiles.txt'"
+#
+#
+#alias d1='du --max-depth=1 -h'
+#alias d2='du --max-depth=2 -h'
+#
+#
+## PROG
+#
+alias pycin="python $BIN/../prog/cineteque/main2.py"
+#
+#
+#
+## NON TRIE
+#
+#alias bin="cd $BIN; clear; echo 'BIN :';echo '====='; ls -lah"
+#alias binl="cd /home/$USER/bin; echo 'BIN LOCAL:';echo '==========='; ls -lah"
+#
+#alias rf="cd $SHOT_PATH/divers/ref; nn"

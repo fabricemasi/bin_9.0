@@ -1,0 +1,102 @@
+#!/usr/bin/env bash
+
+# Chargement de tous les tools
+
+color0=$ROUGE
+color1=$NEUTRE
+color2=${NOIR2}
+color3=${BLANC}
+
+autoload ()
+{
+    path=$1
+    liste=`ls $1`
+    filtre="epOLD.sh" # liste des fichiers a ne pas loader
+
+    for i in $liste ; do
+        if [[ -f "$1/$i" ]]; then # Ne traite que les fichiers
+            load=1
+            for f in $filtre ; do
+                if [[ $i == $f ]]; then
+                    load=0
+                fi
+            done
+            if [[ $load == 1 ]]; then
+                source $path/$i
+                txt=${i} #::-3}
+                if [[ $VERBOSE -ge 2 ]]; then affichetxt $txt 2; fi
+
+                test=`cat $path/$i`
+                for l in $test ; do
+                    if [[ $l == "()" ]]; then
+                        if [[ $VERBOSE -ge 3 ]]; then affichetxt $tt 4; fi
+                    fi
+                    tt=$l
+                done
+            fi
+        fi
+    done
+}
+
+affichetxt ()
+{
+    if [[ $2 == 2 ]];then
+        prefixe="|  "
+        nb=23
+        col=$color2
+    elif [[ $2 == 4 ]];then
+        prefixe="|  . "
+        nb=21
+        col=$color2
+    fi
+
+    chaine=""
+    for (( j = 0; j < $nb ; ++j )); do
+        if [[ ${1:j:1} != "" ]]; then
+            chaine=$chaine${1:j:1}
+        else
+            chaine=$chaine" "
+        fi
+    done
+    echo -e $col "$prefixe$chaine|"
+}
+
+
+clear
+if [[ $VERBOSE -ge 0 ]]; then echo -e ${color1}"  _________________________ ${NEUTRE}"; fi
+if [[ $VERBOSE -ge 0 ]]; then echo -e ${color1}" |                         |${NEUTRE}"; fi
+if [[ $VERBOSE -ge 0 ]]; then echo -e ${color1}" |"$BINV"                  |${NEUTRE}"; fi
+if [[ $VERBOSE -ge 0 ]]; then echo -e ${color1}" |_________________________|${NEUTRE}"; fi
+if [[ $VERBOSE -ge 0 ]]; then echo -e ${color1}" |                         |${NEUTRE}"; fi
+
+if [[ $VERBOSE -ge 2 ]]; then echo -e ${color1}" |INIT_02                  |"$NEUTRE; fi; source $BIN"/init_03"
+
+# ALIASES
+if [[ $VERBOSE -ge 2 ]]; then echo -e ${color1}" |ALIASES                  |"$NEUTRE; fi
+if [[ $VERBOSE -ge 0 ]]; then
+    autoload "$BIN/ed"
+fi
+
+# TOOLS
+if [[ $VERBOSE -ge 2 ]]; then echo -e ${color1}" |TOOLS                    |"${color1}; fi
+if [[ $VERBOSE -ge 0 ]]; then
+    autoload "$BIN/command/tools"
+fi
+
+# COMMANDS
+if [[ $VERBOSE -ge 2 ]]; then echo -e ${color1}" |COMMANDS                 |"${color1}; fi
+if [[ $VERBOSE -ge 0 ]]; then
+    autoload "$BIN/command"
+fi
+
+# EP
+if [[ $VERBOSE -ge 2 ]]; then echo -e ${color1}" |EP                       |"${color1}; fi
+if [[ $VERBOSE -ge 0 ]]; then
+    autoload "$BIN/ep"
+fi
+if [[ $VERBOSE -ge 0 ]]; then echo -e ${color1}" |                         |${NEUTRE}"; fi
+if [[ $VERBOSE -ge 0 ]]; then echo -e ${color1}" |                         |${NEUTRE}"; fi
+if [[ $VERBOSE -ge 0 ]]; then echo -e ${color1}" |loaded                   |${NEUTRE}"; fi
+if [[ $VERBOSE -ge 0 ]]; then echo -e ${color1}" |_________________________|${NEUTRE}"; fi
+echo ""
+

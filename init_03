@@ -1,0 +1,58 @@
+#!/bin/bash
+
+# ============================
+# CREATION DES DIFFERENTS PATH
+#
+# Variables :
+#   - ROOT_PIPE
+#   - ROOT_PROJETS
+#   - ROOT_ARCHIVES
+# ============================
+
+root_temp="$HOME/Temp"
+
+root_pipe="/home/fabrice/OneDrive/Documents/_Documents/PIPELINE"
+root_proj="/home/fabrice/OneDrive/Documents/_Documents/PIPELINE/projets"
+
+# Chemins pour : ROOT_PIPE
+
+if [[ $SYSTEM == "linux" ]]; then
+    root_pipe="/media/partage/PIPELINE/PIPELINE"
+elif [[ $SYSTEM == "windows" ]]; then
+    root_pipe="/home/fabrice/OneDrive/Documents/_Documents/PIPELINE"
+    root_pipe_w="C:\Users\fabri\OneDrive\Documents\_Documents\PIPELINE"
+elif [[ $SYSTEM == "mac" ]]; then
+    echo "Merci de renseigner les path du ROOT_PIPE dans init_03."
+fi
+
+# Chemin de 'ROOT_PROJETS' et 'ROOT_ARCHIVES'
+
+root_proj="$root_pipe/projets"
+root_arch="$root_pipe/archives"
+
+
+
+
+if ! [[ -e "$root_proj" ]]; then
+    echo " Le chemin vers le dossier $root_proj ne peut pas être atteint. Aucune variable générée."
+else
+    export ROOT_PIPE="$root_pipe"
+    export ROOT_PIPE_W="$root_pipe_w"
+    export ROOT_PROJETS="$root_proj"
+    export ROOT_TEMP="$root_temp"
+    export ROOT_RENDER="$root_rend"
+
+    export TYPE="3d"
+    export NAME=""
+    export SOFT=""
+
+    if [[ $VERBOSE -ge 0 ]]; then
+        echo -e ${NOIR2}" |  VERBOSE                |   "$VERBOSE
+    fi
+    if [[ $VERBOSE -ge 1 ]]; then
+        echo -e ${BLANC}" |  BIN                    |   "$BIN
+        echo -e ${BLANC}" |  ROOT_PIPE              |   "$ROOT_PIPE
+        echo -e ${BLANC}" |  ROOT_PROJETS           |   "$ROOT_PROJETS
+        echo -e ${BLANC}" |  ROOT_TEMP              |   "$ROOT_TEMP${NEUTRE}
+    fi
+fi

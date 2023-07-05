@@ -1,0 +1,362 @@
+#!/bin/bash
+#!/bin/bash
+
+export LISTE_SOFTS=""
+export LISTE_SOFTS_A_INSTALL=""
+
+
+# SOFTS :
+
+
+
+
+#=======================================================================================================================
+#=======================================================================================================================
+#=======================================================================================================================
+#=======================================================================================================================
+#=======================================================================================================================
+
+#BLENDER
+
+version="3.5.1"
+export BLENDER_VERSION="$version"
+
+lien="/soft/blender/$BLENDER_VERSION/blender"
+
+goblender ()
+{
+    export SOFT="BLENDER"
+    path="$ROOT_PIPE/projets/$TYPE/$NAME/02_work/blender"
+    extension="blend"
+
+    cl
+
+	cd "$BIN/tools/"
+    python3 presse_papier.py $path
+    cd -;
+
+    go $path $extension
+
+}
+
+blender ()
+{
+    if [[ $# == 0 ]];then
+
+        lien="/soft/blender/$BLENDER_VERSION/blender"
+
+    elif [[ $# == 1 ]];then
+        vv=$1
+
+        if [[ $1 == "2.8" ]];then
+            vv="2.80rc3"
+        elif [[ $1 == "3.5" ]];then
+            vv="3.5.1"
+        fi
+
+        lien="/soft/blender/$vv/blender"
+
+    fi
+    
+    $lien
+}
+
+
+alias ble=blender
+alias bl=blender
+
+alias gob="goblender"
+
+export BLENDER_VERSION="$version"
+export LISTE_SOFTS+="\nBLENDER $BLENDER_VERSION            [blender - ble - bl]   [goblender - gob]"
+#=======================================================================================================================
+#=======================================================================================================================
+#=======================================================================================================================
+#=======================================================================================================================
+#=======================================================================================================================
+
+#XNVIEW
+
+version="1.4.5"
+export XNVIEW=$version
+
+ref(){
+    path=$ROOT_PIPE/projets/$TYPE/$NAME/01_ref/reference/
+    extension=""
+
+    cd "$BIN/tools/"
+    python3 presse_papier.py $path
+    cd -; cl
+
+	go $path $extension
+
+	xnview $path
+
+}
+
+
+img(){
+    lien="/mnt/c/'Program Files'/Adobe/'Adobe Bridge 2022'/Bridge.exe"
+    path_w="P:\bibliotheque\images"
+    echo $lien
+    eval $lien '$path_w'
+}
+
+export LISTE_SOFTS+="\nXNVIEW $XNVIEW             [bd ref bibimg][]"
+#=======================================================================================================================
+#=======================================================================================================================
+#=======================================================================================================================
+#=======================================================================================================================
+#=======================================================================================================================
+
+#DAVINCI
+
+#version="18.0.1_b3"
+#v="18"
+#lien="/mnt/c/'Program Files'/'Blackmagic Design'/'DaVinci Resolve'/Resolve.exe"
+#
+#godavinci ()
+#{
+#	export SOFT="DAVINCI"
+#	path="$ROOT_PIPE/projets/$TYPE/$NAME/02_work/davinci"
+#    extension="unknow"
+#
+#	cd "$BIN/tools/"
+#    python3 presse_papier.py $path
+#    cd -; cl
+#
+#	go $path $extension
+#
+#
+#}
+#
+#alias davinci="$lien"
+#alias dav="$lien"
+#alias godav="godavinci"
+#
+#
+#export DAVINCI_VERSION=$version
+#export DAVINCI_V=$v
+#export LISTE_SOFTS+="\nDAVINCI $DAVINCI_VERSION [dav][godav]"
+
+
+
+#=======================================================================================================================
+#=======================================================================================================================
+#=======================================================================================================================
+#=======================================================================================================================
+#=======================================================================================================================
+
+# HOUDINI
+
+version="19.5.493"
+export HOUDINI_VERSION="$version"
+
+lien="/soft/houdini/$HOUDINI_VERSION/bin/houdinifx"
+
+
+
+
+gohoudini ()
+{
+    export SOFT="HOUDINI"
+    path="$ROOT_PIPE/projets/$TYPE/$NAME/02_work/houdini"
+    extension="hip"
+
+    cd "$BIN/tools/"
+    python3 presse_papier.py $path
+    cd -;
+
+    cl
+
+    go $path $extension
+
+}
+
+houdini ()
+{
+    if [[ $# == 0 ]];then
+
+        lien="/soft/houdini/$HOUDINI_VERSION/bin/houdinifx"
+
+    elif [[ $# == 1 ]];then
+        vv=$1
+
+        if [[ $1 == "19.5" ]];then
+            vv="19.5.493"
+        elif [[ $1 == "19.5" ]];then
+            vv="19.5.493"
+        fi
+
+        lien="/soft/houdini/$vv/bin/houdinifx"
+
+    fi
+
+    cd "/soft/houdini/$HOUDINI_VERSION"
+    source "./houdini_setup"
+    cd -;
+
+    $lien
+}
+
+
+alias hou=houdini
+
+alias goh="gohoudini"
+alias hip="gohoudini"
+
+
+export LISTE_SOFTS+="\nHOUDINI $HOUDINI_VERSION         [houdini - hou]   [gohoudini - goh - hip]"
+#=======================================================================================================================
+#=======================================================================================================================
+#=======================================================================================================================
+#=======================================================================================================================
+#=======================================================================================================================
+
+#GAFFER
+
+version="1.2.7.0"
+export GAFFER_VERSION=$version
+
+lien='/opt/gaffer-$GAFFER_VERSION-linux/bin/gaffer'
+
+gogaffer ()
+{
+	export SOFT="GAFFER"
+	path="$ROOT_PIPE/projets/$TYPE/$NAME/02_work/gaffer"
+    extension="gfr"
+
+	cd "$BIN/tools/"
+    python3 presse_papier.py $path
+    cd -; cl
+
+	go $path $extension
+}
+
+alias gaffer="$lien"
+alias gaf="$lien"
+alias ga="$lien"
+alias gogaf="gogaffer"
+alias goga="gogaffer"
+alias gog="gogaffer"
+
+
+export LISTE_SOFTS+="\nGAFFER $GAFFER_VERSION           [gaffer gaf ga][gogaf goga gog]"
+#=======================================================================================================================
+#=======================================================================================================================
+#=======================================================================================================================
+#=======================================================================================================================
+#=======================================================================================================================
+
+#PUREREF
+
+version="1.11.1"
+lien="/usr/bin/PureRef"
+
+gopureref ()
+{
+	export SOFT="PUREREF"
+	path="$ROOT_PIPE/projets/$TYPE/$NAME/01_ref/pureref"
+	extension="pur"
+
+	cd "$BIN/tools/"
+    python3 presse_papier.py $path
+    cd -; cl
+
+	go $path $extension
+}
+
+alias pureref="$lien"
+alias pur="$lien"
+
+alias gopur="gopureref"
+
+
+export PUREREF_VERSION=$version
+export LISTE_SOFTS+="\nPUREREF $PUREREF_VERSION                 [pur][gopur]"
+
+#=======================================================================================================================
+#=======================================================================================================================
+#=======================================================================================================================
+#=======================================================================================================================
+#=======================================================================================================================
+
+#DJV
+
+version="2.0.8"
+export DJV_VERSION=$version
+lien="/soft/djv/$DJV_VERSION/bin/djv"
+
+
+alias djv="$lien &"
+alias rv="$lien &"
+
+
+
+export LISTE_SOFTS+="\nDJV $DJV_VERSION                     [djv rv]"
+#=======================================================================================================================
+#=======================================================================================================================
+#=======================================================================================================================
+#=======================================================================================================================
+#=======================================================================================================================
+
+# UNREAL
+
+version="5.2.1"
+export UNREAL_VERSION=$version
+
+lien='/soft/unreal/5.2.1/Engine/Binaries/Linux/UnrealEditor'
+
+gounreal ()
+{
+	export SOFT="UNREAL"
+	path="$ROOT_PIPE/projets/$TYPE/$NAME/02_work/unreal"
+    extension=""
+
+	cd "$BIN/tools/"
+    python3 presse_papier.py $path
+    cd -; cl
+
+	go $path $extension
+}
+
+alias unreal="$lien"
+alias unr="$lien"
+alias un="$lien"
+
+alias gounr="gounreal"
+alias goun="gounreal"
+
+
+
+export LISTE_SOFTS+="\nUNREAL $UNREAL_VERSION           [unreal unr un][gounreal gounr goun]"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
