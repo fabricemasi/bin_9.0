@@ -61,7 +61,7 @@ elp ()
     echo ". ROOT :"
     echo ". ------"
     echo -e ". ROOT_PIPE ..................... $ROOT_PIPE ${GRIS} (init_03) ${NEUTRE}"
-    echo -e ". ROOT_PROJETS................... $ROOT_PROJETS ${GRIS} (init_03) ${NEUTRE}"
+    echo -e ". ROOT_PROJET................... $ROOT_PROJET ${GRIS} (init_03) ${NEUTRE}"
     echo -e ". ROOT_TEMP ..................... $ROOT_TEMP ${GRIS} (init_03) ${NEUTRE}"
     echo "."
     echo "."

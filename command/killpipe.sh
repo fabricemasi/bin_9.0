@@ -2,10 +2,9 @@
 
 killpipe ()
 {
-	PROJ=""
 	TYPE=""
-	NAME=""
-	DISC=""
+	PROJ=""
+	FOLD=""
 	SOFT=""
 
 	ps1

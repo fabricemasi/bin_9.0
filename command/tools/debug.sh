@@ -12,14 +12,14 @@ debug()
 
     if [[ $2 == "i" ]]; then
         inout="IN"
-        couleur=${MAGENTA2}
+        couleur=${color2}
         sl=$3
     elif [[ $2 == "o" ]]; then
         inout="OUT"
-        couleur=${MAGENTA}
+        couleur=${color2}
     else
         inout=$2
-        couleur=${ORANGE}
+        couleur=${color2}
     fi
 
 

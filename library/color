@@ -20,7 +20,7 @@ export CYAN2=$'\e[1;36m'
 export BLANC2=$'\e[1;37m'
 
 export GRIS=$'\e[0;38;5;238m'
-export GRISCLAIR=$'\e[0;38;5;245m'
+export GRIS2=$'\e[0;38;5;245m'
 
 export ORANGE=$'\e[0;38;5;214m'
 

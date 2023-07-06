@@ -1,14 +1,13 @@
 #! /bin/bash
 
-
-# Afficher informations si $VERBOSE>1
+# ======================================================================================================================
 if [[ $VERBOSE>0 ]]; then
-    debug "|   setname.sh" "i"
+    debug "|   02_setprojet.sh" "i"
 fi
+# ======================================================================================================================
 
 
-
-setname ()
+setprojet ()
 {
 	go="."              # stocke le path provisoire. C'est l'endroit ou l'on va se deplacer.
 	condition=1         # si a la fin condition = 0, le projet est sette, sinon on sort sans setter le projet
@@ -22,7 +21,7 @@ setname ()
         else
             condition=0
             export TYPE=$TYPE
-            export NAME=""
+            export PROJET=""
             export SOFT=""
         fi
 	fi
@@ -31,11 +30,11 @@ setname ()
 	#----------------------------------------------------------------------------
 	if [[ $# == 1 ]]; then
 
-		path=$ROOT_PROJETS/$TYPE/$1
+		path=$ROOT_TYPE/$1
 
 		# si le projet n'existe pas :
 		if ! [[ -e $path ]]; then
-			echo -e ${GRIS} ""
+			echo -e ${GRIS2} ""
 			read -p "Le projet $1 n'existe pas. Voulez vous le créer ? (o,n) " reponse
 			echo -e ${NEUTRE} ""
 
@@ -49,12 +48,17 @@ setname ()
 				go="$path/02_work"
 				NAME=$1
 				condition=1
+
+				echo -e ${NEUTRE} ""
+                echo -e "creation de $ROOT_PROJET/${JAUNE}$1"
+			    echo -e ${NEUTRE} ""
+
 			elif [[ $reponse == "n" ]]; then
-				go="$ROOT_PROJETS"
+				go="$ROOT_PROJET"
 				condition=0
 			else
-				echo "Erreur de saisie, commande annulee. (1A) "
-				go="$ROOT_PROJETS"
+				echo "Erreur de saisie, commande annulee. (setprojet_1) "
+				go="$ROOT_PROJET"
 				condition=0
 			fi
 		# si le projet existe :
@@ -72,7 +76,7 @@ setname ()
 	#  trop d'argument :
 	#----------------------------------------------------------------------------
 	if [[ $# > 1 ]]; then
-		echo "Erreur de saisie, commande annulee. (2) "
+		echo "Erreur de saisie, commande annulee. (setprojet_2) "
 		go="."
 		condition=0
 	fi
@@ -120,7 +124,7 @@ setname ()
 		ps1
 	else
 		cd $go
-		lst "TYPE = $TYPE \n NAME :" $ROOT_PROJETS 2
+		lst "TYPE = $TYPE \n NAME :" $ROOT_PROJET 2
 		ps1
 	fi
 }
@@ -128,7 +132,8 @@ setname ()
 
 
 
-
+# ======================================================================================================================
 if [[ $VERBOSE>0 ]]; then
-    debug "|   setname.sh" "o"
+    debug "|   02_setprojet.sh" "o"
 fi
+# ======================================================================================================================

@@ -134,7 +134,7 @@ alias gosoft="cd $ROOT_DISC; tre 1"
 alias godisc="godiscipline; tre 1"
 #alias goname="cd $ROOT_TYPE; tre 1"
 #alias gotype="cd $ROOT_PROJ; tre 1"
-alias goproj="cd $ROOT_PROJETS; tre 1"
+alias goproj="cd $ROOT_PROJET; tre 1"
 
 ref ()
 {

@@ -3,8 +3,8 @@
 # Chargement de tous les tools
 
 color0=$ROUGE
-color1=$NEUTRE
-color2=${NOIR2}
+color1=${GRIS2}
+color2=${VERT2}
 color3=${BLANC}
 
 autoload ()
@@ -43,11 +43,11 @@ affichetxt ()
     if [[ $2 == 2 ]];then
         prefixe="|  "
         nb=23
-        col=$color2
+        col=${color1}
     elif [[ $2 == 4 ]];then
         prefixe="|  . "
         nb=21
-        col=$color2
+        col=${color1}
     fi
 
     chaine=""
@@ -58,7 +58,7 @@ affichetxt ()
             chaine=$chaine" "
         fi
     done
-    echo -e $col "$prefixe$chaine|"
+    echo -e $col "$prefixe$chaine|${NEUTRE}"
 }
 
 
@@ -69,28 +69,28 @@ if [[ $VERBOSE -ge 0 ]]; then echo -e ${color1}" |"$BINV"                  |${NE
 if [[ $VERBOSE -ge 0 ]]; then echo -e ${color1}" |_________________________|${NEUTRE}"; fi
 if [[ $VERBOSE -ge 0 ]]; then echo -e ${color1}" |                         |${NEUTRE}"; fi
 
-if [[ $VERBOSE -ge 2 ]]; then echo -e ${color1}" |INIT_02                  |"$NEUTRE; fi; source $BIN"/init_03"
+if [[ $VERBOSE -ge 2 ]]; then echo -e ${color1}" |INIT_02                  |${NEUTRE}"; fi; source $BIN"/init_03"
 
 # ALIASES
-if [[ $VERBOSE -ge 2 ]]; then echo -e ${color1}" |ALIASES                  |"$NEUTRE; fi
+if [[ $VERBOSE -ge 2 ]]; then echo -e ${color1}" |ALIASES                  |${NEUTRE}"; fi
 if [[ $VERBOSE -ge 0 ]]; then
     autoload "$BIN/ed"
 fi
 
 # TOOLS
-if [[ $VERBOSE -ge 2 ]]; then echo -e ${color1}" |TOOLS                    |"${color1}; fi
+if [[ $VERBOSE -ge 2 ]]; then echo -e ${color1}" |TOOLS                    |${NEUTRE}"; fi
 if [[ $VERBOSE -ge 0 ]]; then
     autoload "$BIN/command/tools"
 fi
 
 # COMMANDS
-if [[ $VERBOSE -ge 2 ]]; then echo -e ${color1}" |COMMANDS                 |"${color1}; fi
+if [[ $VERBOSE -ge 2 ]]; then echo -e ${color1}" |COMMANDS                 |${NEUTRE}"; fi
 if [[ $VERBOSE -ge 0 ]]; then
     autoload "$BIN/command"
 fi
 
 # EP
-if [[ $VERBOSE -ge 2 ]]; then echo -e ${color1}" |EP                       |"${color1}; fi
+if [[ $VERBOSE -ge 2 ]]; then echo -e ${color1}" |EP                       |${NEUTRE}"; fi
 if [[ $VERBOSE -ge 0 ]]; then
     autoload "$BIN/ep"
 fi
