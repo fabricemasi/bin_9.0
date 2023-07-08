@@ -1,139 +1,128 @@
 #! /bin/bash
 
+# Creation des variables
+#  - TYPE
+#  - ROOT_TYPE
+
+
+
+
+
+
+
+
 # ======================================================================================================================
+# Afficher informations si $VERBOSE>1
 if [[ $VERBOSE>0 ]]; then
     debug "|   02_setprojet.sh" "i"
 fi
 # ======================================================================================================================
 
 
+
 setprojet ()
 {
-	go="."              # stocke le path provisoire. C'est l'endroit ou l'on va se deplacer.
-	condition=1         # si a la fin condition = 0, le projet est sette, sinon on sort sans setter le projet
-    retour=0
+	condition=0
 
-	#  0 argument :
+    #  0 argument :
 	#----------------------------------------------------------------------------
-	if [[ $# == 0 ]]; then
+    if [[ $# == 0 ]]; then
         if [[ $TYPE == "" ]]; then
             settype 3d
-        else
-            condition=0
-            export TYPE=$TYPE
-            export PROJET=""
-            export SOFT=""
-        fi
-	fi
+            setprojet
+	    elif [[ $TYPE != "" ]]; then
+	        condition=1
+	        export PROJET=""
+	        export FOLDER=""
+	        export SOFT=""
+	        export ROOT_PROJET=""
+	        export ROOT_FOLDER=""
+	        export ROOT_SOFT=""
+	    fi
+    fi
 
-	#  1 argument :
+    #  1 argument :
 	#----------------------------------------------------------------------------
-	if [[ $# == 1 ]]; then
+    if [[ $# == 1 ]]; then
 
-		path=$ROOT_TYPE/$1
+        path=$ROOT_TYPE/$1
 
-		# si le projet n'existe pas :
-		if ! [[ -e $path ]]; then
-			echo -e ${GRIS2} ""
-			read -p "Le projet $1 n'existe pas. Voulez vous le créer ? (o,n) " reponse
+        # si le type n'existe pas :
+        if ! [[ -e $path ]]; then
+        	echo -e ${GRIS2} ""
+            read -p "Le projet $1 n'existe pas. Voulez vous le creer ? (o,n) " reponse
 			echo -e ${NEUTRE} ""
-
-			if [[ $reponse == "o" ]]; then
-				mkdir $path
-				mkdir $path/01_ref
-				mkdir $path/02_work
-				mkdir $path/03_temp
-				mkdir $path/04_publish
-				mkdir $path/05_final
-				go="$path/02_work"
-				NAME=$1
-				condition=1
-
-				echo -e ${NEUTRE} ""
-                echo -e "creation de $ROOT_PROJET/${JAUNE}$1"
+            if [[ $reponse == "o" ]]; then
+                mkdir $path
+                PROJET=$1
+                condition=0
+                echo -e ${NEUTRE} ""
+                echo -e "creation du projet $ROOT/${JAUNE}$1"
 			    echo -e ${NEUTRE} ""
+            elif [[ $reponse == "n" ]]; then
+                condition=1
+            else
+                echo "Erreur de saisie, commande annulee. (setprojet 1) "
+                condition=1
+            fi
+        # si le type existe :
+        else
+            PROJET=$1
+            # si le dernier caractere est "/" on le supprime
+            if [[ ${PROJET: -1} == "/" ]]; then
+                PROJET=${PROJET:: -1}
+            fi
+            condition=0
+        fi
+    fi
 
-			elif [[ $reponse == "n" ]]; then
-				go="$ROOT_PROJET"
-				condition=0
-			else
-				echo "Erreur de saisie, commande annulee. (setprojet_1) "
-				go="$ROOT_PROJET"
-				condition=0
-			fi
-		# si le projet existe :
-		else
-			NAME=$1
-			# si le dernier caractere est "/" on le supprime
-			if [[ ${NAME: -1} == "/" ]]; then
-			 	NAME=${NAME:: -1}
-			fi
-			go="$path/02_work"
-			condition=1
-		fi
-	fi
-
-	#  trop d'argument :
+    #  2 arguments :
 	#----------------------------------------------------------------------------
-	if [[ $# > 1 ]]; then
-		echo "Erreur de saisie, commande annulee. (setprojet_2) "
-		go="."
-		condition=0
-	fi
+    if [[ $# == 2 ]]; then
+        settype $1
+        setprojet $2
+    fi
+
+    #  trop d' argument :
+	#----------------------------------------------------------------------------
+    if [[ $# > 2 ]]; then
+        echo "Erreur de saisie, commande annulee. (setprojet 2) "
+        condition=1
+    fi
 
 
-	# =============================================
-	#  resultat :
-	# =============================================
+    # =============================================
+    #  resultat :
+    # =============================================
 
     clear
 
-	if [[ $condition == 1 ]]; then
-		export TYPE=$TYPE
-		export NAME=$NAME
+    if [[ $condition == 0 ]]; then
 
-        export REF=$ROOT_PIPE/projets/$TYPE/$NAME/01_ref
-		export WORK=$ROOT_PIPE/projets/$TYPE/$NAME/02_work
-        export TEMP=$ROOT_PIPE/projets/$TYPE/$NAME/03_temp
-        export PUBLISH=$ROOT_PIPE/projets/$TYPE/$NAME/04_publish
-        export FINAL=$ROOT_PIPE/projets/$TYPE/$NAME/05_final
+        export TYPE=$TYPE
+        export PROJET=$PROJET
+        export FOLDER=""
+        export SOFT=""
 
-        if [[ $SYSTEM == "windows" ]]; then
-            echo "Systeme detecte : WINDOWS"
-            echo "  -> Correction de la variable d'environnement 'PUBLISH'"
-            publish_w=""$ROOT_PIPE_W"\\projets\\"$TYPE"\\"$NAME"\\04_publish"
-            /mnt/c/Windows/System32/reg.exe add "HKCU\Environment" /v PUBLISH /t REG_SZ /d $publish_w /f
-        fi
+        export ROOT_PROJET=$ROOT_TYPE/$PROJET
 
+        lst "${NEUTRE}${COLOR0}TYPE....... ${COLOR3}$TYPE${COLOR0} \n PROJET..... ${COLOR3}$PROJET" "Liste des repertoires pour le projet ${COLOR3}$PROJET${COLOR0} :" $ROOT_PROJET 2
 
+        ps1
 
-        echo "#!/bin/bash" > $BIN/data/pipe_set.sh
-        echo "export TYPE='"$TYPE"'" >> $BIN/data/pipe_set.sh
-        echo "export NAME='"$NAME"'" >> $BIN/data/pipe_set.sh
+        # on se deplace sur le projet
+        cd $ROOT_PROJET
 
-        dt=`date +%F"--"%T`
-
-        echo $dt-----job $TYPE $NAME >> $BIN/data/pipe_set_history.txt
-        echo -e $VERT
-        echo -e "Enregistrement des donnees de set OK."$NEUTRE
-
-
-
-		cd $go
-		lst "TYPE = $TYPE \n NAME = $NAME \n SOFT :" $WORK 1
+    elif [[ $condition == 1 ]]; then
+        cd $ROOT_TYPE
+		lst "TYPE   = ${COLOR4}$TYPE${COLOR0}" "Liste de projets de type $TYPE :" $ROOT_TYPE 1
 		ps1
-	else
-		cd $go
-		lst "TYPE = $TYPE \n NAME :" $ROOT_PROJET 2
-		ps1
-	fi
+    fi
 }
 
-
-
-
 # ======================================================================================================================
+# Afficher informations si $VERBOSE>1
 if [[ $VERBOSE>0 ]]; then
-    debug "|   02_setprojet.sh" "o"
+    debug "|  02_setprojet.sh" "o"
 fi
 # ======================================================================================================================

@@ -1,11 +1,24 @@
 #!/usr/bin/env bash
 
 # Chargement de tous les tools
+# Chargement des couleurs de l'interface
 
-color0=$ROUGE
+# Interface
+color0=${BLEU}
 color1=${GRIS2}
 color2=${VERT2}
-color3=${BLANC}
+color3=${ORANGE}
+color4=${JAUNE}
+color5=${BLANC}
+color6=${ROUGE}
+
+export COLOR0=$color0
+export COLOR1=$color1
+export COLOR2=$color2
+export COLOR3=$color3
+export COLOR4=$color4
+export COLOR5=$color5
+export COLOR6=$color6
 
 autoload ()
 {

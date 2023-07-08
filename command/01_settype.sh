@@ -14,7 +14,7 @@
 # ======================================================================================================================
 # Afficher informations si $VERBOSE>1
 if [[ $VERBOSE>0 ]]; then
-    debug "|   settype.sh" "i"
+    debug "|   01_settype.sh" "i"
 fi
 # ======================================================================================================================
 
@@ -22,12 +22,12 @@ fi
 
 settype ()
 {
-	condition=1
+	condition=0
 
     #  0 argument :
 	#----------------------------------------------------------------------------
     if [[ $# == 0 ]]; then
-        condition=0
+        condition=1
     fi
 
     #  1 argument :
@@ -44,15 +44,15 @@ settype ()
             if [[ $reponse == "o" ]]; then
                 mkdir $path
                 TYPE=$1
-                condition=1
+                condition=0
                 echo -e ${NEUTRE} ""
                 echo -e "creation du type $ROOT/${JAUNE}$1"
 			    echo -e ${NEUTRE} ""
             elif [[ $reponse == "n" ]]; then
-                condition=0
+                condition=1
             else
                 echo "Erreur de saisie, commande annulee. (settype 1) "
-                condition=0
+                condition=1
             fi
         # si le type existe :
         else
@@ -61,7 +61,7 @@ settype ()
             if [[ ${TYPE: -1} == "/" ]]; then
                 TYPE=${TYPE:: -1}
             fi
-            condition=1
+            condition=0
         fi
     fi
 
@@ -69,7 +69,7 @@ settype ()
 	#----------------------------------------------------------------------------
     if [[ $# > 1 ]]; then
         echo "Erreur de saisie, commande annulee. (settype 2) "
-        condition=0
+        condition=1
     fi
 
 
@@ -79,34 +79,36 @@ settype ()
 
     clear
 
-    if [[ $condition == 1 ]]; then
+    if [[ $condition == 0 ]]; then
 
         export TYPE=$TYPE
-        export PROJ=""
+        export PROJET=""
         export FOLD=""
         export SOFT=""
 
         export ROOT_TYPE=$ROOT_CHANTIERS/$TYPE
 
-        lst "TYPE = ${JAUNE}$TYPE" "LISTE DES PROJETS POUR LE TYPE $TYPE :" $ROOT_CHANTIERS/$TYPE 1
+        lst "TYPE   = ${JAUNE}$TYPE" "Liste de projets de type $TYPE :" $ROOT_CHANTIERS/$TYPE 2
 
         ps1
 
         # on se deplace sur le type
         cd $ROOT_TYPE
 
-        # on continue si l'argument discipline existe deja
-        if [[ $# == 2 ]]; then
-            setprojet $2
-        fi
-        if [[ $# == 3 ]]; then
-            setprojet $2 $3
+    else
+        if [[ $TYPE == "" ]]; then
+            type="3d"
+            root_type="$ROOT_CHANTIERS/$TYPE"
+        else
+            type=$TYPE
+            root_type=$ROOT_TYPE
         fi
 
-    else
-        export TYPE=""
+        export TYPE=$type
+        export ROOT_TYPE=$root_type
+
         cd $ROOT_CHANTIERS
-		lst "Racine du pipeline" "Liste des types de projet :" $ROOT_CHANTIERS 1
+		lst "Racine du pipeline" "Liste des types de projet :" $ROOT_CHANTIERS 2
         ps1
     fi
 }
@@ -114,6 +116,6 @@ settype ()
 # ======================================================================================================================
 # Afficher informations si $VERBOSE>1
 if [[ $VERBOSE>0 ]]; then
-    debug "|  settype.sh" "o"
+    debug "|  01_settype.sh" "o"
 fi
 # ======================================================================================================================

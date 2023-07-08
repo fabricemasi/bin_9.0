@@ -118,10 +118,12 @@ alias ...........="cd ../../../../../../../../../.."
 
 alias jh="job -h"
 alias jhh="job -ha"
-alias s="setprojet"
-alias ss="settype"
-alias sss="setname"
-alias ssss="setdiscipline"
+
+alias sp="setprojet"
+alias st="settype"
+alias sf="setfolder"
+alias ss="setsoft"
+
 
 
 

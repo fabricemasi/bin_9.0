@@ -35,20 +35,24 @@ root_archives="$root_pipe/archives"
 if ! [[ -e "$root_chantiers" ]]; then
     echo " Le chemin vers le dossier $root_chantiers ne peut pas être atteint. Aucune variable générée."
 else
-    export ROOT_PIPE="$root_pipe"
-    export ROOT_CHANTIERS="$root_chantiers"
-    export ROOT_ARCHIVES="$root_archives"
-
-
-    # Pour Windows :
-    if [[ $SYSTEM == "windows" ]]; then
-        export ROOT_PIPE_W="$root_pipe_w"
-    fi
-
     export TYPE="3d"
     export PROJET=""
     export FOLDER=""
     export SOFT=""
+
+
+    export ROOT_PIPE="$root_pipe"
+    export ROOT_CHANTIERS="$root_chantiers"
+    export ROOT_ARCHIVES="$root_archives"
+    if [[ $SYSTEM == "windows" ]]; then # (Pour Windows)
+        export ROOT_PIPE_W="$root_pipe_w"
+    fi
+
+    export ROOT_TYPE="$ROOT_CHANTIERS/$TYPE"
+    export ROOT_PROJET=""
+    export ROOT_FOLDER=""
+    export ROOT_SOFT=""
+
 
     if [[ $VERBOSE -ge 0 ]]; then
         echo -e ${color1}" |verbose : $VERBOSE              |"
