@@ -106,7 +106,7 @@ setprojet ()
 
         export ROOT_PROJET=$ROOT_TYPE/$PROJET
 
-        lst "${NEUTRE}${COLOR0}TYPE....... ${COLOR3}$TYPE${COLOR0} \n PROJET..... ${COLOR3}$PROJET" "Liste des repertoires pour le projet ${COLOR3}$PROJET${COLOR0} :" $ROOT_PROJET 2
+        lst "${NEUTRE}${COLOR0}TYPE....... ${COLOR3}$TYPE${COLOR0} \n PROJET..... ${COLOR3}$PROJET" "Liste des repertoires pour le projet ${COLOR3}$PROJET${COLOR0} :" $ROOT_PROJET 1 ${COLOR4}${GRAS}"Vous devez setter un sous-repertoire (sub) : 'setsub' ou 's3'"
 
         ps1
 
@@ -115,7 +115,7 @@ setprojet ()
 
     elif [[ $condition == 1 ]]; then
         cd $ROOT_TYPE
-		lst "TYPE   = ${COLOR4}$TYPE${COLOR0}" "Liste de projets de type $TYPE :" $ROOT_TYPE 1
+		lst "TYPE   = ${COLOR4}$TYPE${COLOR0}" "Liste de projets de type $TYPE :" $ROOT_TYPE 1 ${COLOR4}${GRAS}"Vous devez setter un projet : 'setprojet' ou 's2'"
 		ps1
     fi
 }

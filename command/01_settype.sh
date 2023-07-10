@@ -88,7 +88,7 @@ settype ()
 
         export ROOT_TYPE=$ROOT_CHANTIERS/$TYPE
 
-        lst "TYPE   = ${JAUNE}$TYPE" "Liste de projets de type $TYPE :" $ROOT_CHANTIERS/$TYPE 2
+        lst "TYPE   = ${JAUNE}$TYPE" "Liste de projets de type $TYPE :" $ROOT_CHANTIERS/$TYPE 1 ${COLOR4}${GRAS}"Vous devez setter un projet : 'setprojet' ou 's2'"
 
         ps1
 
@@ -108,7 +108,8 @@ settype ()
         export ROOT_TYPE=$root_type
 
         cd $ROOT_CHANTIERS
-		lst "Racine du pipeline" "Liste des types de projet :" $ROOT_CHANTIERS 2
+		lst "Racine du pipeline" "Liste des types de projet :" $ROOT_CHANTIERS 1 ${COLOR4}${GRAS}"Vous devez setter un projet : 'setprojet' ou 's2'"
+
         ps1
     fi
 }

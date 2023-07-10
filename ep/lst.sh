@@ -4,6 +4,7 @@
 #               2 : msg 2 = renseignement sur ce qu'est la liste affichee
 #               3 : path ou se positionner
 #               4 : nombre d'indentations pour tree
+#               5 : msg 3 = Message de sortie
 
 
 lst ()
@@ -12,6 +13,7 @@ lst ()
 	msg2=$2
 	path=$3
 	indent=$4
+	msg3=$5
 
     color1=${BLEU}
     color2=${BLEU}${GRAS}
@@ -28,5 +30,5 @@ lst ()
 	echo ""
     echo -e $color1"======================================================="
 	echo ""
-	echo -e $NEUTRE
+	echo -e ${COLOR4}$msg3${NEUTRE}
 }

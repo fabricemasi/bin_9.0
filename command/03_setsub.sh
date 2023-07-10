@@ -2,12 +2,12 @@
 
 # ======================================================================================================================
 if [[ $VERBOSE>0 ]]; then
-    debug "|   03_setfolder.sh" "i"
+    debug "|   03_setsub.sh" "i"
 fi
 # ======================================================================================================================
 
 
-setfolder ()
+setsub ()
 {
 
 	condition=0
@@ -26,9 +26,9 @@ setfolder ()
 	        condition=1
 	    fi
 
-	    export FOLDER=""
+	    export SUB=""
 	    export SOFT=""
-	    export ROOT_FOLDER=""
+	    export ROOT_SUB=""
 	    export ROOT_SOFT=""
 	fi
 
@@ -58,7 +58,7 @@ setfolder ()
                 msg="Commande annulee."
 			else
 				condition=1
-				msg="Erreur de saisie, commande annulee. (setfolder_1)."
+				msg="Erreur de saisie, commande annulee. (setsub_1)."
 			fi
 		# si le sous-repertoire existe :
 		else
@@ -70,7 +70,7 @@ setfolder ()
 	#----------------------------------------------------------------------------
 	if [[ $# > 1 ]]; then
 	    condition=1
-		msg "Erreur de saisie (trop d'arguments), commande annulee. (setfolder_2)."
+		msg "Erreur de saisie (trop d'arguments), commande annulee. (setsub_2)."
 	fi
 
 	# =============================================
@@ -80,15 +80,15 @@ setfolder ()
     clear
 
 	if [[ $condition == 0 ]]; then
-		folder=$1
-		if [[ ${folder: -1} == "/" ]]; then
-			 	folder=${folder:: -1}
+		sub=$1
+		if [[ ${sub: -1} == "/" ]]; then
+			 	sub=${sub:: -1}
 		fi
 
-		export FOLDER=$folder
-		export ROOT_FOLDER=$ROOT_PROJET/$folder
+		export SUB=$sub
+		export ROOT_SUB=$ROOT_PROJET/$sub
 
-        cd $ROOT_FOLDER
+        cd $ROOT_SUB
 
 #        export REF=$ROOT_PIPE/projets/$TYPE/$NAME/01_ref
 #		 export WORK=$ROOT_PIPE/projets/$TYPE/$NAME/02_work
@@ -121,7 +121,7 @@ setfolder ()
 #		lst "TYPE = $TYPE \n NAME = $NAME \n SOFT :" $WORK 1
 #		ps1
 
-        lst "${NEUTRE}${COLOR0}TYPE....... ${COLOR3}$TYPE${COLOR0} \n PROJET..... ${COLOR3}$PROJET${COLOR0} \n FOLDER..... ${COLOR3}$FOLDER" "Liste des espaces de travail pour le projet ${COLOR3}$PROJET${COLOR0}${GRAS} / ${COLOR3}$FOLDER${COLOR0}${GRAS} :" $ROOT_FOLDER/02_work 1
+        lst "${NEUTRE}${COLOR0}TYPE....... ${COLOR3}$TYPE${COLOR0} \n PROJET..... ${COLOR3}$PROJET${COLOR0} \n SUB........ ${COLOR3}$SUB" "Liste des espaces de travail pour le projet ${COLOR3}$PROJET${COLOR0}${GRAS} / ${COLOR3}$SUB${COLOR0}${GRAS} :" $ROOT_SUB/02_work 1 ${COLOR4}${GRAS}"Vous devez setter un software"
         ps1
 
 
@@ -130,7 +130,7 @@ setfolder ()
 	elif [[ $condition == 1 ]]; then
         cd $ROOT_PROJET
         cl
-        lst "${NEUTRE}${COLOR0}TYPE....... ${COLOR3}$TYPE${COLOR0} \n PROJET..... ${COLOR3}$PROJET" "Liste des repertoires pour le projet ${COLOR3}$PROJET${COLOR0} :" $ROOT_PROJET 1
+        lst "${NEUTRE}${COLOR0}TYPE....... ${COLOR3}$TYPE${COLOR0} \n PROJET..... ${COLOR3}$PROJET" "Liste des repertoires pour le projet ${COLOR3}$PROJET${COLOR0} :" $ROOT_PROJET 1 ${COLOR4}${GRAS}"Vous devez setter un sous-repertoire (sub) : 'setsub' ou 's3'"
         echo ""
         echo $msg
 		ps1

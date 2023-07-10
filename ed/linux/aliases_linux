@@ -7,7 +7,7 @@
 export EDITOR='gedit'
 
 
-alias i="init"
+alias i="init; j2"
 alias i0="init 0"
 alias i1="init 1"
 alias i2="init 2"
@@ -61,10 +61,10 @@ alias rv="/mnt/c/'Program Files'/DJV2/bin/djv.com"
 #"C:\Program Files\DJV2\bin\djv.exe"
 
 alias shtd="$ROOT_C/WINDOWS/system32/shutdown.exe -s"
-alias s1='sudo shutdown -h +60'
-alias s2='sudo shutdown -h +120'
-alias s3='sudo shutdown -h +180'
-alias s4='sudo shutdown -h +240'
+alias sh1='sudo shutdown -h +60'
+alias sh2='sudo shutdown -h +120'
+alias sh3='sudo shutdown -h +180'
+alias sh4='sudo shutdown -h +240'
 
 
 
@@ -119,10 +119,14 @@ alias ...........="cd ../../../../../../../../../.."
 alias jh="job -h"
 alias jhh="job -ha"
 
-alias sp="setprojet"
-alias st="settype"
-alias sf="setfolder"
-alias ss="setsoft"
+
+alias j1="settype"
+alias j2="setprojet"
+alias j3="setsub"
+
+alias j="settype"
+alias jj="setprojet"
+alias jjj="setsub"
 
 
 
