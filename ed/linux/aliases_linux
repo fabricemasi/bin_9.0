@@ -2,12 +2,15 @@
 #!/bin/bash
 
 
+alias test=""
+
+
+
 #alias gedit="/mnt/c/'Program Files'/'Sublime Text'/sublime_text.exe"
 
 export EDITOR='gedit'
 
-
-alias i="init; j2"
+alias i="init"
 alias i0="init 0"
 alias i1="init 1"
 alias i2="init 2"
@@ -23,8 +26,7 @@ alias i3="init 3"
 alias ~='cd ~'
 
 
-alias tst="python $BIN/tools/presse_papier.py"
-alias msc="python3 /home/fabrice/bin/music/test2.py"
+alias tst="pyt test.py"
 
 
 # ----------------------------------------------------------------------------------------------------------------------
@@ -71,7 +73,7 @@ alias sh4='sudo shutdown -h +240'
 alias s0="sudo shutdown -h +9000000;echo''; echo $'Redémarrage annulé';echo''"
 
 
-alias note="gedit ~/Documents/notes.txt"
+alias note="gedit ~/notes/notes.txt"
 
 # VPN CINESITE
 
@@ -116,18 +118,16 @@ alias ...........="cd ../../../../../../../../../.."
 # PIPELINE
 # ----------------------------------------------------------------------------------------------------------------------
 
-alias jh="job -h"
-alias jhh="job -ha"
+alias s="job"
+
+alias s1="settype"
+alias s2="setprojet"
+alias s3="setfolder"
 
 
-alias j1="settype"
-alias j2="setprojet"
-alias j3="setsub"
-
-alias j="settype"
-alias jj="setprojet"
-alias jjj="setsub"
-
+alias t="settype"
+alias p="setprojet"
+alias f="setfolder"
 
 
 

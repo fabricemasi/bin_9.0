@@ -1,0 +1,79 @@
+#!/bin/bash
+
+# CHARGEMENT DE TOUS LES SCRIPTS DIVERS
+
+pyt ()
+# LANCE LE SCRIPT PYTHON SPECIFIE
+#
+# SYNTAXE :
+# pyt1 "split_path.py" "hotrod/main"
+#
+# ARGUMENTS :
+# $1 doit etre le nom du fichier pyhton
+# $2 l'argument que l'on veut passer dans le script (obligatoire)
+{
+    # ================================================
+    # On commence par vider les fichiers data return :
+    # ================================================
+    echo "" > $BIN/data/return_nb.txt
+    echo "" > $BIN/data/return1.txt
+    echo "" > $BIN/data/return2.txt
+    echo "" > $BIN/data/return3.txt
+    echo "" > $BIN/data/return4.txt
+    echo "" > $BIN/data/return5.txt
+
+
+
+    # ======
+    # Main :
+    # ======
+    file=$1
+    arg=$2
+
+    cd "$BIN/python_tools/"
+    python3 $file $arg
+    cd -;
+
+
+
+    # =======================
+    # GENERATION DES RETURN :
+    # =======================
+    return_nb=$(cat $BIN/data/return_nb.txt)
+    return1=""
+    return2=""
+    return3=""
+    return4=""
+    return5=""
+
+#    if [[ $RETURN_NB == 1 ]]; then
+#        return1=$(cat $BIN/data/return1.txt)
+#    elif [[ $RETURN_NB == 2 ]]; then
+#        return1=$(cat $BIN/data/return1.txt)
+#        return2=$(cat $BIN/data/return2.txt)
+#    elif [[ $RETURN_NB == 3 ]]; then
+#        return1=$(cat $BIN/data/return1.txt)
+#        return2=$(cat $BIN/data/return2.txt)
+#        return3=$(cat $BIN/data/return3.txt)
+#    elif [[ $RETURN_NB == 4 ]]; then
+#        return1=$(cat $BIN/data/return1.txt)
+#        return2=$(cat $BIN/data/return2.txt)
+#        return3=$(cat $BIN/data/return3.txt)
+#        return4=$(cat $BIN/data/return4.txt)
+#    elif [[ $RETURN_NB == 5 ]]; then
+#        return1=$(cat $BIN/data/return1.txt)
+#        return2=$(cat $BIN/data/return2.txt)
+#        return3=$(cat $BIN/data/return3.txt)
+#        return4=$(cat $BIN/data/return4.txt)
+#        return5=$(cat $BIN/data/return5.txt)
+#    fi
+
+    export RETURN_NB=$return_nb
+    export RETURN1=$(cat $BIN/data/return1.txt)
+    export RETURN2=$(cat $BIN/data/return2.txt)
+    export RETURN3=$(cat $BIN/data/return3.txt)
+    export RETURN4=$(cat $BIN/data/return4.txt)
+    export RETURN5=$(cat $BIN/data/return5.txt)
+}
+
+

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #!/bin/bash
 
-
+alias edi="/mnt/c/'Program Files'/'Sublime Text'/sublime_text.exe"
 export EDITOR='gedit'
 
 
@@ -42,7 +42,7 @@ alias ~='cd ~'
 # alias python="python3"
 alias py='python'
 
-alias tst="python $BIN/tools/presse_papier.py"
+alias tst="python $BIN/python_tools/presse_papier.py"
 alias msc="python3 /home/fabrice/bin/music/test2.py"
 
 
@@ -53,9 +53,9 @@ alias msc="python3 /home/fabrice/bin/music/test2.py"
 
 # SYSTEME
 
-alias ed="$EDITOR '$BIN/ed/aliases'"
-alias ed2="$EDITOR '$BIN/ed/softs'"
-alias eds="source $BIN/ed/aliases;source $BIN/ed/softs"
+alias ed="$EDITOR '$BIN/ed/windows/aliases_windows'"
+alias ed2="$EDITOR '$BIN/ed/windows/softs_windows'"
+alias eds="source $BIN/ed/windows/aliases_windows;source $BIN/ed/windows/softs_windows"
 
 alias ls="ls --color=auto"
 
@@ -73,7 +73,7 @@ alias brc="$EDITOR '\wsl.localhost\Ubuntu20.04LTS\home\fabrice\.bashrc'"
 alias bin="cd $BIN; clear; echo 'BIN :';echo '====='; ls -lah"
 
 alias smb="$EDITOR /etc/samba/smb.conf"
-alias fst="$EDITOR /etc/fstab"
+alias fst="sudo $EDITOR /etc/fstab"
 
 alias ram="free -h && sysctl vm.drop_caches=3 && free -h"
 alias rv="/mnt/c/'Program Files'/DJV2/bin/djv.com"
@@ -143,12 +143,27 @@ alias ...........="cd ../../../../../../../../../.."
 # PIPELINE
 # ----------------------------------------------------------------------------------------------------------------------
 
-alias jh="job -h"
-alias jhh="job -ha"
-alias s="setprojet"
-alias ss="settype"
-alias sss="setname"
-alias ssss="setdiscipline"
+#alias jh="job -h"
+#alias jhh="job -ha"
+
+
+alias s="job"
+
+alias s1="settype"
+alias s2="setprojet"
+alias s3="setfolder"
+
+
+alias t="settype"
+alias p="setprojet"
+alias f="setfolder"
+
+
+
+
+
+
+
 
 
 

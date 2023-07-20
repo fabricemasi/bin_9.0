@@ -20,6 +20,11 @@ export COLOR4=$color4
 export COLOR5=$color5
 export COLOR6=$color6
 
+
+
+
+
+
 autoload ()
 {
     path=$1

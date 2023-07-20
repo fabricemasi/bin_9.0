@@ -50,7 +50,7 @@ alias ~='cd ~'
 # alias python="python3"
 alias py='python'
 
-alias tst="python $BIN/tools/presse_papier.py"
+alias tst="python $BIN/python_tools/presse_papier.py"
 alias msc="python3 /home/fabrice/bin/music/test2.py"
 
 alias pycin="python $BIN/../prog/cineteque/main2.py"
@@ -118,8 +118,8 @@ alias gedit="/Applications/Sublime\ Text.app/Contents/MacOS/sublime_text"
 
 # SYSTEME
 
-alias ed="$EDITOR '$BIN/ed/aliases_mac'"
-alias ed2="$EDITOR '$BIN/ed/softs_mac'"
+alias ed="$EDITOR '$BIN/ed/mac/aliases_mac'"
+alias ed2="$EDITOR '$BIN/ed/mac/softs_mac'"
 alias eds="source $BIN/ed/aliases_mac;source $BIN/ed/softs_mac"
 
 

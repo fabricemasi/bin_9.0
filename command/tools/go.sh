@@ -8,7 +8,7 @@ go ()		# 2 arg : $path, $extension
 	condition=false
 	xx=false
 
-	cd $WORK
+	cd $ROOT_FOLDER/02_work
 
     if ! [[ -e $path ]]; then
         echo -e ${GRIS}""

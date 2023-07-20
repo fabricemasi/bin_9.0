@@ -13,6 +13,9 @@ init() {
     fi
 
     source "$BIN/init_02"
+    if [[ $VERBOSE == 0 ]];then
+        setprojet
+    fi
 }
 
 

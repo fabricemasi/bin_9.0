@@ -22,23 +22,25 @@ fi
 
 setprojet ()
 {
+    export PROJET=""
+    export FOLDER=""
+    export SOFT=""
+
+    export ROOT_PROJET=""
+    export ROOT_FOLDER=""
+    export ROOT_SOFT=""
+
 	condition=0
 
     #  0 argument :
 	#----------------------------------------------------------------------------
     if [[ $# == 0 ]]; then
-        if [[ $TYPE == "" ]]; then
-            settype 3d
-            setprojet
-	    elif [[ $TYPE != "" ]]; then
-	        condition=1
-	        export PROJET=""
-	        export FOLDER=""
-	        export SOFT=""
-	        export ROOT_PROJET=""
-	        export ROOT_FOLDER=""
-	        export ROOT_SOFT=""
-	    fi
+        export PROJET=""
+        export FOLDER=""
+        export ROOT_PROJET=""
+        export ROOT_FOLDER=""
+
+	    condition=1
     fi
 
     #  1 argument :
@@ -54,11 +56,8 @@ setprojet ()
 			echo -e ${NEUTRE} ""
             if [[ $reponse == "o" ]]; then
                 mkdir $path
-                PROJET=$1
-                condition=0
-                echo -e ${NEUTRE} ""
-                echo -e "creation du projet $ROOT/${JAUNE}$1"
-			    echo -e ${NEUTRE} ""
+                projet=$1
+			    condition=0
             elif [[ $reponse == "n" ]]; then
                 condition=1
             else
@@ -67,10 +66,10 @@ setprojet ()
             fi
         # si le type existe :
         else
-            PROJET=$1
+            projet=$1
             # si le dernier caractere est "/" on le supprime
-            if [[ ${PROJET: -1} == "/" ]]; then
-                PROJET=${PROJET:: -1}
+            if [[ ${projet: -1} == "/" ]]; then
+                projet=${projet:: -1}
             fi
             condition=0
         fi
@@ -91,6 +90,14 @@ setprojet ()
     fi
 
 
+
+
+
+
+
+
+
+
     # =============================================
     #  resultat :
     # =============================================
@@ -99,25 +106,35 @@ setprojet ()
 
     if [[ $condition == 0 ]]; then
 
-        export TYPE=$TYPE
-        export PROJET=$PROJET
-        export FOLDER=""
-        export SOFT=""
-
+        export PROJET=$projet
         export ROOT_PROJET=$ROOT_TYPE/$PROJET
 
-        lst "${NEUTRE}${COLOR0}TYPE....... ${COLOR3}$TYPE${COLOR0} \n PROJET..... ${COLOR3}$PROJET" "Liste des repertoires pour le projet ${COLOR3}$PROJET${COLOR0} :" $ROOT_PROJET 1 ${COLOR4}${GRAS}"Vous devez setter un sous-repertoire (sub) : 'setsub' ou 's3'"
 
-        ps1
 
-        # on se deplace sur le projet
-        cd $ROOT_PROJET
+        go=$ROOT_PROJET
+        lst     "${NEUTRE}${COLOR0}TYPE....... ${COLOR3}$TYPE${COLOR0} \n PROJET..... ${COLOR3}$PROJET"   "Liste des repertoires pour le projet ${COLOR3}$PROJET${COLOR0} :"   $ROOT_PROJET   1   ${COLOR4}${GRAS}"Vous devez setter un sous-repertoire (folder) : 'setfolder' ou 's'"
+
+        # Lance la commande setfolder si il n'y a qu'un seul folder
+        nb_folder=`ls -l | grep ^d |wc -l`
+        if [[ $nb_folder == 1 ]]; then
+            folder=`ls`
+            setfolder $folder
+        fi
 
     elif [[ $condition == 1 ]]; then
-        cd $ROOT_TYPE
-		lst "TYPE   = ${COLOR4}$TYPE${COLOR0}" "Liste de projets de type $TYPE :" $ROOT_TYPE 1 ${COLOR4}${GRAS}"Vous devez setter un projet : 'setprojet' ou 's2'"
-		ps1
+        export PROJET=""
+        export ROOT_PROJET=""
+
+        go=$ROOT_TYPE
+		lst     "TYPE   = ${COLOR4}$TYPE${COLOR0}"   "Liste de projets de type $TYPE :"   $ROOT_TYPE   1   ${COLOR4}${GRAS}"Vous devez setter un projet : 'setprojet' ou 'p'"
     fi
+
+    cd $go
+    ps1
+
+
+
+
 }
 
 # ======================================================================================================================

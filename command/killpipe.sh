@@ -3,11 +3,12 @@
 killpipe ()
 {
 	TYPE=""
-	PROJ=""
-	FOLD=""
+	PROJET=""
+	FOLDER=""
 	SOFT=""
 
-	ps1
+
 	cd ~
 	reset
+	ps1
 }

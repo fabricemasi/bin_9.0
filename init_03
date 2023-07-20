@@ -19,10 +19,10 @@ root_chantiers="$root_pipe/chantiers"
 if [[ $SYSTEM == "linux" ]]; then
     root_pipe="/media/partage/PIPELINE/PIPELINE"
 elif [[ $SYSTEM == "windows" ]]; then
-    root_pipe="/home/fabrice/OneDrive/Documents/_Documents/PIPELINE"
-    root_pipe_w="C:\Users\fabri\OneDrive\Documents\_Documents\PIPELINE"
+    root_pipe="/mnt/p/PIPELINE"
+    root_pipe_w="P:\PIPELINE"
 elif [[ $SYSTEM == "mac" ]]; then
-    echo "Merci de renseigner les path du ROOT_PIPE dans init_03."
+    root_pipe="/Volumes/Pipeline/PIPELINE"
 fi
 
 # Chemin de 'ROOT_PROJET' et 'ROOT_ARCHIVES' :

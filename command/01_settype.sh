@@ -18,10 +18,16 @@ if [[ $VERBOSE>0 ]]; then
 fi
 # ======================================================================================================================
 
-
-
 settype ()
 {
+    export PROJET=""
+    export FOLDER=""
+    export SOFT=""
+
+    export ROOT_PROJET=""
+    export ROOT_FOLDER=""
+    export ROOT_SOFT=""
+
 	condition=0
 
     #  0 argument :
@@ -41,10 +47,12 @@ settype ()
         	echo -e ${GRIS2} ""
             read -p "Le type $1 n'existe pas. Voulez vous le creer ? (o,n) " reponse
 			echo -e ${NEUTRE} ""
+
             if [[ $reponse == "o" ]]; then
                 mkdir $path
-                TYPE=$1
+                type=$1
                 condition=0
+
                 echo -e ${NEUTRE} ""
                 echo -e "creation du type $ROOT/${JAUNE}$1"
 			    echo -e ${NEUTRE} ""
@@ -56,10 +64,10 @@ settype ()
             fi
         # si le type existe :
         else
-            TYPE=$1
+            type=$1
             # si le dernier caractere est "/" on le supprime
-            if [[ ${TYPE: -1} == "/" ]]; then
-                TYPE=${TYPE:: -1}
+            if [[ ${type: -1} == "/" ]]; then
+                type=${type:: -1}
             fi
             condition=0
         fi
@@ -73,6 +81,14 @@ settype ()
     fi
 
 
+
+
+
+
+
+
+
+
     # =============================================
     #  resultat :
     # =============================================
@@ -80,38 +96,33 @@ settype ()
     clear
 
     if [[ $condition == 0 ]]; then
-
-        export TYPE=$TYPE
-        export PROJET=""
-        export FOLD=""
-        export SOFT=""
-
+        export TYPE=$type
         export ROOT_TYPE=$ROOT_CHANTIERS/$TYPE
 
-        lst "TYPE   = ${JAUNE}$TYPE" "Liste de projets de type $TYPE :" $ROOT_CHANTIERS/$TYPE 1 ${COLOR4}${GRAS}"Vous devez setter un projet : 'setprojet' ou 's2'"
-
-        ps1
-
-        # on se deplace sur le type
         cd $ROOT_TYPE
+        lst     "TYPE   = ${JAUNE}$type"   "Liste de projets de type $type :"   $ROOT_CHANTIERS/$TYPE   1   ${COLOR4}${GRAS}"Vous devez setter un projet : 'setprojet' ou 'p'"
 
-    else
-        if [[ $TYPE == "" ]]; then
-            type="3d"
-            root_type="$ROOT_CHANTIERS/$TYPE"
-        else
-            type=$TYPE
-            root_type=$ROOT_TYPE
+        # Lance la commande setprojet si il n'y a qu'un seul folder
+        nb_folder=`ls -l | grep ^d |wc -l`
+        if [[ $nb_folder == 1 ]]; then
+            folder=`ls`
+            setprojet $folder
         fi
 
-        export TYPE=$type
-        export ROOT_TYPE=$root_type
+    elif [[ $condition == 1 ]]; then
+        if  [[ $TYPE == "" ]]; then
+            export TYPE="3d"
+            export ROOT_TYPE=$ROOT_CHANTIERS/$TYPE
+        else
+            export TYPE=$TYPE
+            export ROOT_TYPE=$ROOT_CHANTIERS/$TYPE
+        fi
 
         cd $ROOT_CHANTIERS
-		lst "Racine du pipeline" "Liste des types de projet :" $ROOT_CHANTIERS 1 ${COLOR4}${GRAS}"Vous devez setter un projet : 'setprojet' ou 's2'"
-
-        ps1
+		lst     "Racine du pipeline"   "Liste des types de projet :"   $ROOT_CHANTIERS   1   ${COLOR4}${GRAS}"Vous devez setter un projet : 'setprojet' ou 'p'"
     fi
+
+    ps1
 }
 
 # ======================================================================================================================

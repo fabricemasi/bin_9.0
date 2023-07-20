@@ -22,16 +22,16 @@ ps1 ()
         cl11=$GRIS2
     fi
     if [[ -e $PATH_CACHE ]] && [[ -e $PATH_RENDER ]]; then
-      PS1="\n${cl7}\u@\h $cl1[${cl2}${TYPE}${cl1}]-[${cl8}${PROJET}${cl1}]-[${cl8}${SUB}${cl1}]${cl7}-[${cl9}${SOFT}${cl9}]-${cl6}cache${cl1}-${cl6}render${cl1} ${cl4}\n\w ${cl1}> ${NEUTRE}"
+      PS1="\n${cl7}\u@\h $cl1[${cl2}${TYPE}${cl1}]-[${cl8}${PROJET}${cl1}]-[${cl8}${FOLDER}${cl1}]${cl7}-[${cl9}${SOFT}${cl9}]-${cl6}cache${cl1}-${cl6}render${cl1} ${cl4}\n\w ${cl1}> ${NEUTRE}"
 
     elif ! [[ -e $PATH_CACHE ]] && [[ -e $PATH_RENDER ]]; then
-      PS1="\n${cl7}\u@\h $cl1[${cl2}${TYPE}${cl1}]-[${cl8}${PROJET}${cl1}]-[${cl8}${SUB}${cl1}]${cl7}-[${cl9}${SOFT}${cl9}]-${cl6}render${cl1} ${cl4}\n\w ${cl1}> ${NEUTRE}"
+      PS1="\n${cl7}\u@\h $cl1[${cl2}${TYPE}${cl1}]-[${cl8}${PROJET}${cl1}]-[${cl8}${FOLDER}${cl1}]${cl7}-[${cl9}${SOFT}${cl9}]-${cl6}render${cl1} ${cl4}\n\w ${cl1}> ${NEUTRE}"
 
     elif [[ -e $PATH_CACHE ]] && ! [[ -e $PATH_RENDER ]]; then
-      PS1="\n${cl7}\u@\h $cl1[${cl2}${TYPE}${cl1}]-[${cl8}${PROJET}${cl1}]-[${cl8}${SUB}${cl1}]${cl7}-[${cl9}${SOFT}${cl9}]-${cl6}cache${cl1} ${cl4}\n\w ${cl1}> ${NEUTRE}"
+      PS1="\n${cl7}\u@\h $cl1[${cl2}${TYPE}${cl1}]-[${cl8}${PROJET}${cl1}]-[${cl8}${FOLDER}${cl1}]${cl7}-[${cl9}${SOFT}${cl9}]-${cl6}cache${cl1} ${cl4}\n\w ${cl1}> ${NEUTRE}"
 
     else
-      PS1="\n${cl7}\u@\h $cl1[${cl1}${TYPE}${cl1}]-[${cl8}${PROJET}${cl1}]-[${cl8}${SUB}${cl1}]${cl1} ${cl1}${SOFT}${cl1} ${cl4}\n\w ${cl1}> ${NEUTRE}"
+      PS1="\n${cl7}\u@\h $cl1[${cl1}${TYPE}${cl1}]-[${cl8}${PROJET}${cl1}]-[${cl8}${FOLDER}${cl1}]${cl1} ${cl1}${SOFT}${cl1} ${cl4}\n\w ${cl1}> ${NEUTRE}"
     fi
 }
 

@@ -38,11 +38,14 @@ lien="/mnt/c/'Program Files'/Autodesk/'AutoCAD 2022'/acad.exe /product ACAD /lan
 goautocad ()
 {
     export SOFT="AUTOCAD"
-    path="$ROOT_PIPE/projets/$TYPE/$NAME/02_work/autocad"
-    path_w="$ROOT_PIPE_W\projets\\$TYPE\\$NAME\\02_work\\autocad"
+    path="$ROOT_PIPE/chantiers/$TYPE/$PROJET/$FOLDER/02_work/autocad"
+
+    path="$ROOT_PIPE/chantiers/$TYPE/$PROJET/$FOLDER/02_work/blender"
+
+    path_w="$ROOT_PIPE_W\chantiers\\$TYPE\\$PROJET\\$FOLDER\\02_work\\autocad"
 	extension="dwg"
 
-	cd "$BIN/tools/"
+	cd "$BIN/python_tools/"
     python3 presse_papier.py $path_w
     cd -; cl
 
@@ -70,11 +73,12 @@ lien="/mnt/c/'Program Files'/'Blender Foundation'/'Blender $version'/blender.exe
 goblender ()
 {
     export SOFT="BLENDER"
-    path="$ROOT_PIPE/projets/$TYPE/$NAME/02_work/blender"
-    path_w="$ROOT_PIPE_W\projets\\$TYPE\\$NAME\\02_work\\blender"
+    path="$ROOT_PIPE/chantiers/$TYPE/$PROJET/$FOLDER/02_work/blender"
+    path_w="$ROOT_PIPE_W\chantiers\\$TYPE\\$PROJET\\$FOLDER\\02_work\\blender"
+
 	extension="blend"
 
-	cd "$BIN/tools/"
+	cd "$BIN/python_tools/"
     python3 presse_papier.py $path_w
     cd -; cl
 
@@ -100,14 +104,14 @@ v="2022"
 
 bd(){
     lien="/mnt/c/'Program Files'/Adobe/'Adobe Bridge 2022'/Bridge.exe"
-    path_w="$ROOT_PIPE_W\\projets\\$TYPE\\$NAME\\01_ref\\bridge"
+    path_w="$ROOT_PIPE_W\\chantiers\\$TYPE\\$PROJET\\$FOLDER\\01_ref\\bridge"
     echo $lien
     eval $lien '$path_w'
 }
 
 ref(){
     lien="/mnt/c/'Program Files'/Adobe/'Adobe Bridge 2022'/Bridge.exe"
-    path_w="$ROOT_PIPE_W\\projets\\$TYPE\\$NAME\\01_ref\\bridge"
+    path_w="$ROOT_PIPE_W\\chantiers\\$TYPE\\$PROJET\\$FOLDER\\01_ref\\bridge"
     echo $lien
     eval $lien '$path_w'
 }
@@ -141,10 +145,10 @@ lien="/mnt/c/'Program Files'/'Blackmagic Design'/'DaVinci Resolve'/Resolve.exe"
 godavinci ()
 {
 	export SOFT="DAVINCI"
-	path="$ROOT_PIPE/projets/$TYPE/$NAME/02_work/davinci"
+	path="$ROOT_PIPE/chantiers/$TYPE/$PROJET/$FOLDER/02_work/davinci"
     extension="unknow"
 
-	cd "$BIN/tools/"
+	cd "$BIN/python_tools/"
     python3 presse_papier.py $path
     cd -; cl
 
@@ -182,16 +186,16 @@ fi
 gohoudini ()
 {
 	export SOFT="HOUDINI"
-	path="$ROOT_PIPE/projets/$TYPE/$NAME/02_work/houdini"
+	path="$ROOT_PIPE/chantiers/$TYPE/$PROJET/$FOLDER/02_work/houdini"
     extension="hip"
 
-	cd "$BIN/tools/"
+	cd "$BIN/python_tools/"
     python3 presse_papier.py $path
     cd -; cl
 
 	go $path $extension
 
-	python "$BIN/tools/make_houdini_env.py"
+	python "$BIN/python_tools/make_houdini_env.py"
 }
 
 alias houdini="$lien"
@@ -227,11 +231,11 @@ lien='explorer.exe "C:\Program Files\The Foundry\START_KATANA"'
 gokatana ()
 {
 	export SOFT="KATANA"
-	path="$ROOT_PIPE/projets/$TYPE/$NAME/02_work/katana"
-	path_w="$ROOT_PIPE_W\projets\\$TYPE\\$NAME\\02_work\\katana"
+	path="$ROOT_PIPE/chantiers/$TYPE/$PROJET/$FOLDER/02_work/katana"
+	path_w="$ROOT_PIPE_W\chantiers\\$TYPE\\$PROJET\\$FOLDER\\02_work\\katana"
     extension="katana"
 
-	cd "$BIN/tools/"
+	cd "$BIN/python_tools/"
     python3 presse_papier.py $path_w
     cd -; cl
 
@@ -276,11 +280,11 @@ lien='explorer.exe "C:\Program Files\Gaffer"'
 gogaffer ()
 {
 	export SOFT="GAFFER"
-	path="$ROOT_PIPE/projets/$TYPE/$NAME/02_work/gaffer"
-	path_w="$ROOT_PIPE_W\projets\\$TYPE\\$NAME\\02_work\\gaffer"
+	path="$ROOT_PIPE/chantiers/$TYPE/$PROJET/$FOLDER/02_work/gaffer"
+	path_w="$ROOT_PIPE_W\chantiers\\$TYPE\\$PROJET\\$FOLDER\\02_work\\gaffer"
     extension="gfr"
 
-	cd "$BIN/tools/"
+	cd "$BIN/python_tools/"
     python3 presse_papier.py $path_w
     cd -; cl
 
@@ -308,11 +312,11 @@ lien="/mnt/c/'Program Files'/Autodesk/Maya2023/bin/maya.exe"
 gomaya ()
 {
     export SOFT="MAYA"
-    path="$ROOT_PIPE/projets/$TYPE/$NAME/02_work/maya"
-    path_w="$ROOT_PIPE_W\projets\\$TYPE\\$NAME\\02_work\\maya"
+    path="$ROOT_PIPE/chantiers/$TYPE/$PROJET/$FOLDER/02_work/maya"
+    path_w="$ROOT_PIPE_W\chantiers\\$TYPE\\$PROJET\\$FOLDER\\02_work\\maya"
 	extension="mb"
 
-	cd "$BIN/tools/"
+	cd "$BIN/python_tools/"
     python3 presse_papier.py $path_w
     cd -; cl
 
@@ -339,10 +343,10 @@ lien="/mnt/c/'Program Files'/Nuke12.2v5/Nuke12.2.exe"
 gonuke ()
 {
 	export SOFT="NUKE"
-	path="$ROOT_PIPE/projets/$TYPE/$NAME/02_work/nuke"
+	path="$ROOT_PIPE/chantiers/$TYPE/$PROJET/$FOLDER/02_work/nuke"
     extension="nk"
 
-	cd "$BIN/tools/"
+	cd "$BIN/python_tools/"
     python3 presse_papier.py $path
     cd -; cl
 
@@ -392,11 +396,11 @@ lien="/mnt/c/'Program Files'/PureRef/PureRef.exe"
 gopureref ()
 {
 	export SOFT="PUREREF"
-	path="$ROOT_PIPE/projets/$TYPE/$NAME/01_ref/pureref"
-	path_w="$ROOT_PIPE_W\projets\\$TYPE\\$NAME\\01_ref\\pureref"
+	path="$ROOT_PIPE/chantiers/$TYPE/$PROJET/$FOLDER/01_ref/pureref"
+	path_w="$ROOT_PIPE_W\chantiers\\$TYPE\\$PROJET\\$FOLDER\\01_ref\\pureref"
     extension="pur"
 
-	cd "$BIN/tools/"
+	cd "$BIN/python_tools/"
     python3 presse_papier.py $path_w
     cd -; cl
 
@@ -453,10 +457,10 @@ lien="/mnt/c/'Program Files'/Adobe/'Adobe Substance 3D Painter'/'Adobe Substance
 gosubstancep ()
 {
 	export SOFT="SUBSTANCE_PAINTER"
-	path="$ROOT_PIPE/projets/$TYPE/$NAME/02_work/substance_painter"
+	path="$ROOT_PIPE/chantiers/$TYPE/$PROJET/$FOLDER/02_work/substance_painter"
     extension="AVERIFIER"
 
-	cd "$BIN/tools/"
+	cd "$BIN/python_tools/"
     python3 presse_papier.py $path
     cd -; cl
 
@@ -485,10 +489,10 @@ lien="C:/'Program Files (x86)'/'Epic Games'/Launcher/Portal/Binaries/Win32/EpicG
 gounreal ()
 {
 	export SOFT="UNREAL"
-	path="$ROOT_PIPE/projets/$TYPE/$NAME/02_work/unreal"
+	path="$ROOT_PIPE/chantiers/$TYPE/$PROJET/$FOLDER/02_work/unreal"
     extension="uproject"
 
-	cd "$BIN/tools/"
+	cd "$BIN/python_tools/"
     python3 presse_papier.py $path
     cd -; cl
 
@@ -520,11 +524,11 @@ lien="/mnt/c/'Program Files'/'Maxon ZBrush 2023'/ZBrush.exe"
 gozbrush ()
 {
 	export SOFT="ZBRUSH"
-	path="$ROOT_PIPE/projets/$TYPE/$NAME/02_work/zbrush"
-	path_w="$ROOT_PIPE_W\projets\\$TYPE\\$NAME\\02_work\\zbrush"
+	path="$ROOT_PIPE/chantiers/$TYPE/$PROJET/$FOLDER/02_work/zbrush"
+	path_w="$ROOT_PIPE_W\chantiers\\$TYPE\\$PROJET\\$FOLDER\\01_ref\\zbrush"
     extension="zpr"
 
-	cd "$BIN/tools/"
+	cd "$BIN/python_tools/"
     python3 presse_papier.py $path_w
     cd -; cl
 
